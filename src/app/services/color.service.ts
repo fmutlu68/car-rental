@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from "@angular/common/http";
 import { Observable } from 'rxjs';
-import { ColorResponseModel } from '../models/responses/ColorResponseModel';
+import { ColorResponseModel } from '../models/responses/colorResponseModel';
 
 @Injectable({
   providedIn: 'root'

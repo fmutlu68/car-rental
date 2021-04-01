@@ -1,1 +1,49 @@
-<p>navi works!</p>
+<div class="collapse" id="navbarToggleExternalContent">
+    <div class="bg-dark p-4">
+      <h5 class="text-white h4">Araba Kiralama Uyuglaması</h5>
+      <span class="text-muted">Furkan Mutlu</span>
+    </div>
+  </div>
+
+<nav class="navbar navbar-dark bg-dark">
+    <div class="container-fluid">
+        <div class="d-grid gap-2 d-md-flex justify-content-md-top">
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarToggleExternalContent" aria-controls="navbarToggleExternalContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+              </button>
+        </div>
+        <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+            <li class="nav-item dropdown">
+                <a class="btn btn-outline-primary dropdown-toggle" href="#" id="customerDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                  Müşteri
+                </a>
+                <ul class="dropdown-menu" aria-labelledby="customerDropdown">
+                    <li><a class="dropdown-item" href="#">Ekle</a></li>
+                    <li><a class="dropdown-item" href="#">Listele</a></li>
+                </ul>
+            </li>
+            <li class="nav-item dropdown">
+                <a class="btn btn-outline-primary dropdown-toggle" href="#" id="brandDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                  Marka
+                </a>
+                <ul class="dropdown-menu" aria-labelledby="brandDropdown">
+                    <li><a class="dropdown-item" href="#">Ekle</a></li>
+                    <li><a class="dropdown-item" href="#">Listele</a></li>
+                </ul>
+            </li>
+            <li class="nav-item dropdown">
+                <a class="btn btn-outline-primary dropdown-toggle" href="#" id="colorDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                  Renk
+                </a>
+                <ul class="dropdown-menu" aria-labelledby="colorDropdown">
+                    <li><a class="dropdown-item" href="#">Ekle</a></li>
+                    <li><a class="dropdown-item" href="#">Listele</a></li>
+                </ul>
+            </li>
+            <form class="d-flex">
+                <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+                <button class="btn btn-outline-primary">Ara</button>
+            </form>
+        </div>
+      </div>
+</nav>

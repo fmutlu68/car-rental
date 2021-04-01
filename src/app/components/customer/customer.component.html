@@ -1,0 +1,20 @@
+<div *ngIf="dataLoaded==false" class="d-flex justify-content-center">
+    <div class="spinner-border" role="status">
+      <span class="visually-hidden">Loading...</span>
+    </div>
+</div>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>No</th>
+            <th>Şirket Adı</th>
+            <th>Kullanıcı No</th>
+        </tr>
+    </thead>
+    <tr *ngFor="let customer of customers">
+        <td>{{customer.id}}</td>
+        <td>{{customer.companyName}}</td>
+        <td>{{customer.userId}}</td>
+    </tr>
+</table>

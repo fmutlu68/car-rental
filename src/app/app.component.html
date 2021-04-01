@@ -1,1 +1,66 @@
-<router-outlet></router-outlet>
+<div class="container-fluid">
+    <app-navi></app-navi>
+    <br>
+    <div class="row">
+      <div class="col-md-3">
+        <h5>Markalar</h5>
+        <app-brand></app-brand>
+        <br>
+        <h5>Renkler</h5>
+        <app-color></app-color>
+      </div>
+      <div class="col-md-9">
+        <div class="accordion-item">
+            <h2 class="accordion-header" id="headingCar">
+              <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#carCollapse" aria-expanded="false" aria-controls="carCollapse">
+                Arabalar
+              </button>
+            </h2>
+            <div id="carCollapse" class="accordion-collapse collapse" aria-labelledby="headingCar" data-bs-parent="#mainAccordionFlush">
+                <div class="accordion-body">
+                  <app-car></app-car>
+                </div>
+            </div>
+        </div>
+        <div class="accordion-item">
+          <h2 class="accordion-header" id="headingRental">
+            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#rentalCollapse" aria-expanded="false" aria-controls="rentalCollapse">
+              Kiralamalar
+            </button>
+          </h2>
+          <div id="rentalCollapse" class="accordion-collapse collapse" aria-labelledby="headingRental" data-bs-parent="#mainAccordionFlush">
+              <div class="accordion-body">
+                <app-rental></app-rental>
+              </div>
+          </div>
+      </div>
+      <div class="accordion-item">
+        <h2 class="accordion-header" id="headingCustomer">
+            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#customerCollapse" aria-expanded="false" aria-controls="customerCollapse">
+              Müşteriler
+            </button>
+        </h2>
+        <div id="customerCollapse" class="accordion-collapse collapse" aria-labelledby="headingCustomer" data-bs-parent="#mainAccordionFlush">
+            <div class="accordion-body">
+              <app-customer></app-customer>
+            </div>
+        </div>
+      </div>
+    </div>
+    <router-outlet></router-outlet>
+</div>
+<!-- 
+  <div class="accordion accordion-flush" id="mainAccordionFlush">
+    <div class="accordion-item">
+        <h2 class="accordion-header" id="flush-headingOne">
+          <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseOne" aria-expanded="false" aria-controls="flush-collapseOne">
+            Arabalar
+          </button>
+        </h2>
+        <div id="firstCollapse" class="accordion-collapse collapse" aria-labelledby="flush-headingOne" data-bs-parent="#mainAccordionFlush">
+            <div class="accordion-body">
+              <app-car></app-car>
+            </div>
+        </div>
+    </div>
+  </div> -->

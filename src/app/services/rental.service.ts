@@ -11,6 +11,6 @@ export class RentalService {
   constructor(private httpClient : HttpClient) { }
 
   getRentals() : Observable<RentalResponseModel> {
-    return this.httpClient.get<RentalResponseModel>(this.apiUrl + "getall");
+    return this.httpClient.get<RentalResponseModel>(this.apiUrl + "getrentaldetails");
   }
 }

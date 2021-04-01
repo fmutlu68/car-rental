@@ -3,4 +3,5 @@ export interface CarDetail {
     colorName : string;
     brandName : string;
     dailyPrice : string;
+    modelYear : string;
 }
