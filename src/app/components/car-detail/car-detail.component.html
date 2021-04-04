@@ -1,0 +1,84 @@
+<div *ngIf="dataLoaded == false" class="d-flex justify-content-center">
+  <div class="spinner-border" role="status">
+    <span class="visually-hidden">Loading...</span>
+  </div>
+</div>
+<h3><span class="badge bg-secondary">Araba Detayı</span></h3>
+<br />
+<div *ngIf="carImages == null && dataLoaded == true" style="text-align: center">
+  <img
+    src="../../../assets/images/not_found_image.png"
+    alt="Resim Eklenmemiş"
+    height="250px"
+    width="65%"
+  />
+</div>
+<div *ngIf="carImages != null" id="carImagesCarouselControl" class="carousel slide" data-bs-ride="carousel">
+  <div  class="carousel-indicators">
+    <button *ngFor="let image of carImages; let i = index"
+      type="button" data-bs-target="#carouselExampleIndicators" attr.data-bs-slide-to="{{ i }}"
+      [class]="getIndicatorClass(image)">
+    </button>
+  </div>
+  <div class="carousel-inner">
+    <div *ngFor="let image of carImages ; index as i; first as firstImage" [ngClass]="{ active: firstImage }" class="carousel-item active" data-bs-interval="2000">
+      <img src="http://localhost:61956{{image}}" class="d-block w-100" alt="..." 
+      alt="Resim Yüklenemedi"
+      height="250px">
+    </div>
+  </div>
+  <button class="carousel-control-prev" type="button" data-bs-target="#carImagesCarouselControl" data-bs-slide="prev">
+    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+    <span class="visually-hidden">Önceki</span>
+  </button>
+  <button class="carousel-control-next" type="button" data-bs-target="#carImagesCarouselControl" data-bs-slide="next">
+    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+    <span class="visually-hidden">Sonraki</span>
+  </button>
+</div>
+<br />
+<ul class="list-group list-group-flush" style="font-weight: bolder">
+  <div>
+    <h4><span class="badge bg-success float-start">Araba Adı</span></h4>
+    <h4>
+      <span class="badge bg-primary float-end">{{ carDetail.carName }}</span>
+    </h4>
+  </div>
+  <div>
+    <h4><span class="badge bg-success float-start">Renk Adı</span></h4>
+    <h4>
+      <span class="badge bg-primary float-end">{{ carDetail.colorName }}</span>
+    </h4>
+  </div>
+  <div>
+    <h4><span class="badge bg-success float-start">Marka Adı</span></h4>
+    <h4>
+      <span class="badge bg-primary float-end">{{ carDetail.brandName }}</span>
+    </h4>
+  </div>
+  <div>
+    <h4>
+      <span class="badge bg-success float-start">Günlük Kiralama Bedeli</span>
+    </h4>
+    <h4>
+      <span class="badge bg-primary float-end">{{ carDetail.dailyPrice }}</span>
+    </h4>
+  </div>
+  <div>
+    <h4><span class="badge bg-success float-start">Araba Modeli</span></h4>
+    <h4>
+      <span class="badge bg-primary float-end">{{ carDetail.modelYear }}</span>
+    </h4>
+  </div>
+  <div>
+    <h4>
+      <span class="badge bg-success float-start"
+        >Toplam Bulunan Resim Sayısı</span
+      >
+    </h4>
+    <h4>
+      <span class="badge bg-primary float-end">{{ carImages.length }}</span>
+    </h4>
+  </div>
+</ul>
+<br />

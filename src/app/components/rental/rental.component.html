@@ -3,8 +3,8 @@
       <span class="visually-hidden">Loading...</span>
     </div>
 </div>
-
-<table class="table">
+<h3><span class="badge bg-secondary">Kirlamalar</span></h3>
+<table class="table table-responsive table-striped table-dark table-hover">
     <thead>
         <tr>
             <th>Araba Tanımı</th>
@@ -13,10 +13,12 @@
             <th>Geri Dönüş Tarihi</th>
         </tr>
     </thead>
-    <tr *ngFor="let rental of rentals">
-        <td>{{rental.carName}}</td>
-        <td>{{rental.customerName}}</td>
-        <td>{{rental.rentDate}}</td>
-        <td>{{rental.returnDate}}</td>
-    </tr>
+    <tbody>
+        <tr *ngFor="let rental of rentals">
+            <td>{{rental.carName}}</td>
+            <td>{{rental.customerName}}</td>
+            <td>{{rental.rentDate}}</td>
+            <td>{{rental.returnDate}}</td>
+        </tr>
+    </tbody>
 </table>

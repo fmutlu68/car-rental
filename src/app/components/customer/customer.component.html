@@ -3,8 +3,8 @@
       <span class="visually-hidden">Loading...</span>
     </div>
 </div>
-
-<table class="table">
+<h3><span class="badge bg-secondary">Müşteriler</span></h3>
+<table class="table table-responsive table-striped table-dark table-hover">
     <thead>
         <tr>
             <th>No</th>
@@ -12,9 +12,11 @@
             <th>Kullanıcı No</th>
         </tr>
     </thead>
-    <tr *ngFor="let customer of customers">
-        <td>{{customer.id}}</td>
-        <td>{{customer.companyName}}</td>
-        <td>{{customer.userId}}</td>
-    </tr>
+    <tbody>
+        <tr *ngFor="let customer of customers">
+            <td>{{customer.id}}</td>
+            <td>{{customer.companyName}}</td>
+            <td>{{customer.userId}}</td>
+        </tr>
+    </tbody>
 </table>
