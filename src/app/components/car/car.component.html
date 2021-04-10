@@ -3,9 +3,15 @@
       <span class="visually-hidden">Loading...</span>
     </div>
 </div>
-<h3><span class="badge bg-secondary">Arabalar</span></h3>
-<table class="table table-responsive table-striped table-dark table-hover">
-    <thead class="thead-light">
+<div *ngIf="cars.length>0" class="mb-3">
+    <input type="text" [(ngModel)]="carFilterText" class="form-control" id="carFilterTextFormControl" placeholder="Arama İfadesini Giriniz">
+  </div>
+<div *ngIf="carFilterText" class="alert alert-secondary">
+    Girilen Text: {{carFilterText}}
+</div>
+<table *ngIf="cars.length>0" class="table table-responsive table-striped table-secondary table-hover">
+    <caption><h3><span class="badge bg-secondary">Arabalar</span></h3></caption>
+    <thead class="table-dark">
         <tr>
             <th>Bilgi</th>
             <th>Günlük Fiyat</th>
@@ -16,7 +22,7 @@
         </tr>
     </thead>
     <tbody>
-        <tr *ngFor="let car of cars">
+        <tr *ngFor="let car of cars |carFilterPipe:carFilterText">
             <td>{{car.carName}}</td>
             <td>{{car.dailyPrice}}</td>
             <td>{{car.modelYear}}</td>
@@ -30,3 +36,8 @@
         </tr>
     </tbody>
 </table>
+<h1 *ngIf="cars.length==0&&dataLoaded==true&&selectedOperation==''" class="text-center" >Herhangi Bir Araba Bulunamadı.</h1>
+
+<h1 *ngIf="cars.length==0&&dataLoaded==true&&selectedOperation=='Brand'" class="text-center" >Seçilen Markaya Göre Herhangi Bir Araba Bulunamadı.</h1>
+
+<h1 *ngIf="cars.length==0&&dataLoaded==true&&selectedOperation=='Color'" class="text-center" >Seçilen Renge Göre Herhangi Bir Araba Bulunamadı.</h1>

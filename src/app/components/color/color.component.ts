@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Color } from 'src/app/models/entities/color';
 import { ColorResponseModel } from 'src/app/models/responses/colorResponseModel';
 import { ColorService } from 'src/app/services/color.service';
+import { DataSharingService } from 'src/app/services/data-sharing.service';
 
 @Component({
   selector: 'app-color',
@@ -11,6 +12,8 @@ import { ColorService } from 'src/app/services/color.service';
 export class ColorComponent implements OnInit {
 
   dataLoaded : boolean = false;
+  isColorAffected : boolean = false;
+  colorFilterText : string = "";
   currentColor: Color = {
     id:-1,
     name:"",
@@ -21,7 +24,19 @@ export class ColorComponent implements OnInit {
     message: "Yükleniyor..",
     success: false
   };
-  constructor(private colorService : ColorService) { }
+  constructor(private colorService : ColorService, private dataSharingService : DataSharingService) { 
+    dataSharingService.isColorAffected.subscribe(isAffected => {
+      this.isColorAffected = isAffected;
+      this.checkIsColorAffected();
+    });
+  }
+  checkIsColorAffected() {
+    if (this.isColorAffected === true){
+      this.dataLoaded = false;
+      this.loadColors();
+      this.dataSharingService.isColorAffected.next(false);
+    }
+  }
 
   ngOnInit(): void {
     this.loadColors();

@@ -3,16 +3,16 @@
       <span class="visually-hidden">Loading...</span>
     </div>
 </div>
-<h3><span class="badge bg-secondary">Müşteriler</span></h3>
-<table class="table table-responsive table-striped table-dark table-hover">
-    <thead>
+<table class="table table-responsive table-striped table-hover overflow-auto">
+    <caption><h3><span class="badge bg-secondary">Müşteriler</span></h3></caption>
+    <thead class="table-dark">
         <tr>
             <th>No</th>
             <th>Şirket Adı</th>
             <th>Kullanıcı No</th>
         </tr>
     </thead>
-    <tbody>
+    <tbody class="table-secondary">
         <tr *ngFor="let customer of customers">
             <td>{{customer.id}}</td>
             <td>{{customer.companyName}}</td>

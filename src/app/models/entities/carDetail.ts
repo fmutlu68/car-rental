@@ -8,4 +8,5 @@ export interface CarDetail {
     dailyPrice : string;
     modelYear : string;
     imageList : string[];
+    isRentedNow : boolean;
 }

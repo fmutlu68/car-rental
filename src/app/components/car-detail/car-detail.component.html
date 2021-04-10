@@ -9,7 +9,7 @@
   <img
     src="../../../assets/images/not_found_image.png"
     alt="Resim Eklenmemiş"
-    height="250px"
+    height="50%"
     width="65%"
   />
 </div>
@@ -24,7 +24,7 @@
     <div *ngFor="let image of carImages ; index as i; first as firstImage" [ngClass]="{ active: firstImage }" class="carousel-item active" data-bs-interval="2000">
       <img src="http://localhost:61956{{image}}" class="d-block w-100" alt="..." 
       alt="Resim Yüklenemedi"
-      height="250px">
+      height="300px">
     </div>
   </div>
   <button class="carousel-control-prev" type="button" data-bs-target="#carImagesCarouselControl" data-bs-slide="prev">
@@ -37,48 +37,72 @@
   </button>
 </div>
 <br />
-<ul class="list-group list-group-flush" style="font-weight: bolder">
-  <div>
-    <h4><span class="badge bg-success float-start">Araba Adı</span></h4>
-    <h4>
-      <span class="badge bg-primary float-end">{{ carDetail.carName }}</span>
-    </h4>
+<table *ngIf="dataLoaded" class="table table-secondary" style="font-weight: bolder;">
+  <thead>
+    <tr>
+      <th>No</th>
+      <th>Araba Adı</th>
+      <th>Marka Adı</th>
+      <th>Renk Adı</th>
+      <th>Kiralama Bedeli (TL)</th>
+      <th>Modeli</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>{{carDetail.carId}}</th>
+      <th>{{carDetail.carName}}</th>
+      <th>{{carDetail.brandName}}</th>
+      <th>{{carDetail.colorName}}</th>
+      <th>{{carDetail.dailyPrice}}</th>
+      <th>{{carDetail.modelYear}}</th>
+    </tr>
+  </tbody>
+</table>
+<br>
+<div *ngIf="carDetail.isRentedNow&&dataLoaded" class="alert alert-info" role="alert">
+  Görüntülediğiniz Araba Şu An Kiradadır. 
+</div>
+<div *ngIf="carDetail.isRentedNow==false&&dataLoaded" class="d-grid gap-2" data-bs-toggle="modal" data-bs-target="#enterRentalsDetailScreen">
+  <button type="button" class="btn btn-outline-primary">
+    Kirala
+  </button> 
+</div>
+<br>
+
+<div class="modal fade" id="enterRentalsDetailScreen" tabindex="-1" aria-labelledby="enterRentalsDetailScreenLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="enterRentalsDetailScreenLabel">Kiralama Detaylarını Giriniz</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <div class="form-floating">
+          <select [(ngModel)]="selectedCurrentCustomerId" required class="form-select" id="customerSelect" aria-label="Müşteriyi Seçiniz">
+            <option [ngValue]="customer.customerId" *ngFor="let customer of customers" value="{{customer.customerId}}">{{customer.userName}}</option>
+          </select>
+          <label for="customerSelect">Arabayı Kiralayacak Müşteri</label>
+        </div>
+        <br>
+        <div class="form-group-row">
+          <h6 for="rental-rent-date" class="col-2 col-form-label">Başlangıç Tarihi</h6>
+          <div class="col-10">
+            <input [(ngModel)]="rentDate" required class="form-control" type="date" id="rental-rent-date" placeholder="Kiralama Tarihi Seçiniz">
+          </div>
+        </div>
+        <br>
+        <div class="form-group-row">
+          <h5 for="rental-rent-date" class="col-2 col-form-label">Bitiş Tarihi</h5>
+          <div class="col-10">
+            <input [(ngModel)]="returnDate" required class="form-control" type="date" id="rental-rent-date" placeholder="Bitiş Tarihi Seçiniz">
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Kapat</button>
+        <button (click)="routeToRentalPayment()" data-bs-dismiss="modal" type="submit" class="btn btn-primary">Ödeme Yap</button>
+      </div>
+    </div>
   </div>
-  <div>
-    <h4><span class="badge bg-success float-start">Renk Adı</span></h4>
-    <h4>
-      <span class="badge bg-primary float-end">{{ carDetail.colorName }}</span>
-    </h4>
-  </div>
-  <div>
-    <h4><span class="badge bg-success float-start">Marka Adı</span></h4>
-    <h4>
-      <span class="badge bg-primary float-end">{{ carDetail.brandName }}</span>
-    </h4>
-  </div>
-  <div>
-    <h4>
-      <span class="badge bg-success float-start">Günlük Kiralama Bedeli</span>
-    </h4>
-    <h4>
-      <span class="badge bg-primary float-end">{{ carDetail.dailyPrice }}</span>
-    </h4>
-  </div>
-  <div>
-    <h4><span class="badge bg-success float-start">Araba Modeli</span></h4>
-    <h4>
-      <span class="badge bg-primary float-end">{{ carDetail.modelYear }}</span>
-    </h4>
-  </div>
-  <div>
-    <h4>
-      <span class="badge bg-success float-start"
-        >Toplam Bulunan Resim Sayısı</span
-      >
-    </h4>
-    <h4>
-      <span class="badge bg-primary float-end">{{ carImages.length }}</span>
-    </h4>
-  </div>
-</ul>
-<br />
+</div>

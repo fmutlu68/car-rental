@@ -4,9 +4,15 @@
     </div>
 </div>
 
+<div class="mb-3">
+  <input type="text" [(ngModel)]="colorFilterText" class="form-control" id="colorFilterTextFormControl" placeholder="Aranılacak Renk İfadesini Giriniz">
+</div>
+<div *ngIf="colorFilterText" class="alert alert-secondary">
+  Girilen Arama İfadesi: {{colorFilterText}}
+</div>
 <h5 *ngIf="currentColor" class="badge bg-secondary">{{currentColor.name}}</h5>
 <h5 *ngIf="currentColor.id==-1" class="badge bg-secondary">Tüm Ürünler</h5>
-<ul class="list-group">
+<ul class="list-group overflow-auto">
   <li 
   [class]="getAllColorClass()" 
   style="cursor: pointer"
@@ -19,7 +25,7 @@
     style="cursor: pointer;"
     routerLink="/cars/color/{{color.id}}"
     [class]="getCurrentColorClass(color)"
-    *ngFor="let color of colors" >
+    *ngFor="let color of colors | brandFilterPipe:colorFilterText" >
     {{ color.name }}
   </li>
 </ul>

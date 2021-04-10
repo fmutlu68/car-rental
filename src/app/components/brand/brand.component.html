@@ -3,10 +3,15 @@
     <span class="visually-hidden">Loading...</span>
   </div>
 </div>
-
+<div class="mb-3">
+  <input type="text" [(ngModel)]="brandFilterText" class="form-control" id="brandFilterTextFormControl" placeholder="Aranılacak Marka İfadesini Giriniz">
+</div>
+<div *ngIf="brandFilterText" class="alert alert-secondary">
+  Girilen Arama İfadesi: {{brandFilterText}}
+</div>
 <h5 *ngIf="currentBrand" class="badge bg-secondary">{{currentBrand.name}}</h5>
 <h5 *ngIf="currentBrand.id==-1" class="badge bg-secondary">Tüm Ürünler</h5>
-<ul class="list-group">
+<ul class="list-group overflow-auto">
   <li 
   [class]="getAllBrandClass()" 
   style="cursor: pointer"
@@ -19,7 +24,7 @@
     style="cursor: pointer;"
     [class]="getCurrentBrandClass(brand)"
     routerLink="/cars/brand/{{brand.id}}"
-    *ngFor="let brand of brands">
+    *ngFor="let brand of brands | brandFilterPipe:brandFilterText">
     {{ brand.name }}
   </li>
 </ul>

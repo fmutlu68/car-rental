@@ -11,19 +11,21 @@ import { CarService } from 'src/app/services/car.service';
   styleUrls: ['./car.component.css']
 })
 export class CarComponent implements OnInit {
+  selectedOperation : string = "";
   dataLoaded : boolean = false;
+  carFilterText : string = "";
   cars : CarDetail[] = [];
   constructor(private carService : CarService, private activatedRoute: ActivatedRoute) { }
 
   ngOnInit(): void {
 
     this.activatedRoute.params.subscribe(params=>{
-      console.log(params);
-      console.log(params["colorId"]);
       if (params["brandId"] != undefined){
         this.loadCarsByBrand(params["brandId"]);
+        this.selectedOperation = "Brand";
       }else if (params["colorId"] != undefined){
         this.loadCarsByColor(params["colorId"]);
+        this.selectedOperation = "Color";
       }else{
         this.loadCars();
       }
@@ -33,7 +35,6 @@ export class CarComponent implements OnInit {
     this.dataLoaded = false;
     this.cars = [];
     this.carService.getCarsByColor(colorId).subscribe(response=>{
-      console.log(response.data);
       this.cars = response.data;
       this.dataLoaded = true;
     });
@@ -51,7 +52,6 @@ export class CarComponent implements OnInit {
     this.dataLoaded = false;
     this.cars = [];
     this.carService.getCarsByBrand(brandId).subscribe(response=>{
-      console.log(response.data);
       this.cars = response.data;
       this.dataLoaded = true;
     });

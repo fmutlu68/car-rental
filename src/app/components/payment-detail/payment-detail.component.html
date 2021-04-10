@@ -1,0 +1,95 @@
+<h3><span class="badge bg-secondary">Ödeme Ekranı</span></h3>
+<br>
+<div class="row">
+    <div class="col-md-7">
+        <div class="mb-3">
+            <h4 for="creditCardNumberControlInput"><span class="badge bg-primary">Kart Numarası</span></h4>
+            <input type="text" maxlength="18" [(ngModel)]="rentalDetail.currentCreditCard.cartNumber" class="form-control" id="creditCardNumberControlInput" placeholder="Kart Numaranızı Giriniz.">
+        </div>
+        <div class="row">
+            <div class="col-md-9">
+                <div class="mb-3">
+                    <h4 for="ownerNameControlInput"><span class="badge bg-primary">Kart Sahibinin Adı</span></h4>
+                    <input type="text" [(ngModel)]="rentalDetail.currentCreditCard.cartOwner" maxlength="150" name="ownerNameInput" class="form-control" id="ownerNameControlInput" placeholder="Kart Sahibinin Tam Adını Giriniz.">
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="mb-3">
+                    <h4 for="cvvControlInput"><span class="badge bg-primary">CVV</span></h4>
+                    <input type="text" maxlength="3" [(ngModel)]="rentalDetail.currentCreditCard.cvv" name="cvvInput" class="form-control" id="cvvControlInput" placeholder="CVV">
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <h4><span class="badge bg-primary">Son Kullanım Tarihi</span></h4>
+            <div class="col-md-4">
+                <div class="mb-3">
+                    <h5><span class="badge bg-primary">Yıl</span></h5>
+                    <select [(ngModel)]="expirationYear" class="form-select" name="expirationYear" id="expirationYear">
+                        <option [ngValue]="2021" value="2021">2021</option>
+                        <option [ngValue]="2022" value="2022">2022</option>
+                        <option [ngValue]="2023" value="2023">2023</option>
+                        <option [ngValue]="2024" value="2024">2024</option>
+                        <option [ngValue]="2025" value="2025">2025</option>
+                        <option [ngValue]="2026" value="2026">2026</option>
+                        <option [ngValue]="2027" value="2027">2027</option>
+                        <option [ngValue]="2028" value="2028">2028</option>
+                        <option [ngValue]="2029" value="2029">2029</option>
+                        <option [ngValue]="2030" value="2030">2030</option>
+                    </select>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="mb-3">
+                    <h5><span class="badge bg-primary">Ay</span></h5>
+                    <select [(ngModel)]="expirationMonth" class="form-select" name="expirationMonth" id="expirationMonth">
+                        <option value="1"  [ngValue]="1">Ocak</option>
+                        <option value="2"  [ngValue]="2">Şubat</option>
+                        <option value="3"  [ngValue]="3">Mart</option>
+                        <option value="4"  [ngValue]="4">Nisan</option>
+                        <option value="5"  [ngValue]="5">Mayıs</option>
+                        <option value="6"  [ngValue]="6">Haziran</option>
+                        <option value="7"  [ngValue]="7">Temmuz</option>
+                        <option value="8"  [ngValue]="8">Ağustos</option>
+                        <option value="9"  [ngValue]="9">Eylül</option>
+                        <option value="10" [ngValue]="10">Ekim</option>
+                        <option value="11" [ngValue]="11">Kasım</option>
+                        <option value="12" [ngValue]="12">Aralık</option>
+                    </select>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <br>
+                <img src="../../../assets/images/master_card_visa.png">
+            </div>
+        </div>
+    </div>
+    <div class="col-md-4">
+        <div class="row row-with-details">
+            <div class="row">
+                <h4 class="col">Gün Sayısı</h4>
+                <h4 class="col" style="text-align: right;"><span class="badge bg-success">{{rentalDetail.dayNumber}}</span></h4>
+            </div>
+            <br>
+            <div class="row">
+                <h4 class="col">Günlük Kiralama Bedeli</h4>
+                <h4 class="col" style="text-align: right;"><span class="badge bg-success">{{rentalDetail.car.dailyPrice}} TL</span></h4>
+            </div>
+            <br>
+            <div class="row">
+                <h4 class="col">Toplam Tutar</h4>
+                <h4 class="col" style="text-align: right;">
+                    <span class="badge bg-success">{{calculateTotalAmount()}} TL</span>
+                    <br>
+                    <span class="badge bg-info">KDV Dahildir.</span>
+                </h4>
+            </div>
+        </div>
+        <br>
+        <div class="row" style="text-align: center;">
+            <button (click)="pay()" class="btn btn-success">Ödemeyi Tamamla</button>
+        </div>
+        <br>
+    </div>
+    <div class="col-md-1"></div>
+</div>

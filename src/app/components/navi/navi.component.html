@@ -106,8 +106,8 @@
           class="dropdown-menu dropdown-menu-dark"
           aria-labelledby="brandDropdown"
         >
-          <li class="dropdown-item" style="cursor: pointer">Ekle</li>
-          <li class="dropdown-item" style="cursor: pointer">Listele</li>
+          <li class="dropdown-item" style="cursor: pointer" style="cursor: pointer" data-bs-toggle="modal" data-bs-target="#brandAddModal">Ekle</li>
+          <li class="dropdown-item" (click)="loadBrands()" style="cursor: pointer" data-bs-toggle="modal" data-bs-target="#brandListModal">Listele</li>
         </ul>
       </li>
       <li class="nav-item dropdown" style="cursor: pointer">
@@ -125,8 +125,8 @@
           class="dropdown-menu dropdown-menu-dark"
           aria-labelledby="colorDropdown"
         >
-          <li class="dropdown-item" style="cursor: pointer">Ekle</li>
-          <li class="dropdown-item" style="cursor: pointer">Listele</li>
+          <li class="dropdown-item" style="cursor: pointer"  style="cursor: pointer" data-bs-toggle="modal" data-bs-target="#colorAddModal">Ekle</li>
+          <li class="dropdown-item" (click)="loadColors()" style="cursor: pointer"  style="cursor: pointer" data-bs-toggle="modal" data-bs-target="#colorListModal">Listele</li>
         </ul>
       </li>
       <form class="d-flex">
@@ -141,3 +141,141 @@
     </div>
   </div>
 </nav>
+
+<div class="modal fade" id="brandListModal" tabindex="-1" aria-labelledby="brandModalLabel" aria-hidden="true">
+  <div class="modal-dialog model-lg modal-dialog-scrollable">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="brandModalLabel">Markalar Listelendi.</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <div class="mb-3">
+          <label for="naviBrandFilterTextFormControl" class="form-label">Marka Arama</label>
+          <input type="text" [(ngModel)]="naviBrandFilterText" class="form-control" id="naviBrandFilterTextFormControl" placeholder="Arama İfadesini Giriniz">
+        </div>
+        <div *ngIf="naviBrandFilterText" class="alert alert-secondary">
+            Girilen Arama İfadesi: {{naviBrandFilterText}}
+        </div>
+        <table class="table table-responsive table-striped table-dark table-hover">
+          <thead class="thead-light">
+              <tr>
+                  <th>No</th>
+                  <th>Marka Adı</th>
+                  <th>Sil</th>
+                  <th>Arabaları Listele</th>
+              </tr>
+          </thead>
+          <tbody>
+              <tr *ngFor="let brand of brands |brandFilterPipe:naviBrandFilterText">
+                  <td>{{brand.id}}</td>
+                  <td>{{brand.name}}</td>
+                  <td>
+                      <button type="button" class="btn btn-danger" (click)="deleteCurrentBrand(brand)">
+                          Sil
+                      </button>
+                  </td>
+                  <td>
+                      <button type="button" class="btn btn-info" data-bs-dismiss="modal" routerLink="/cars/brand/{{brand.id}}">
+                          Arabaları Listele
+                      </button>
+                  </td>
+              </tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Kapat</button>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="modal fade" id="brandAddModal" tabindex="-1" aria-labelledby="brandAddModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="brandAddModalLabel">Marka Ekle</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <div class="mb-3">
+          <label for="brandNameControlInput" class="form-label">Marka Adı</label>
+          <input type="text" [(ngModel)]="naviBrandNameText" class="form-control" id="brandNameControlInput" placeholder="Marka Adını Giriniz.">
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Kapat</button>
+        <button type="button" class="btn btn-primary" data-bs-dismiss="modal" (click)="addBrand()">Marka Ekle</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal fade" id="colorListModal" tabindex="-1" aria-labelledby="colorModalLabel" aria-hidden="true">
+  <div class="modal-dialog model-lg modal-dialog-scrollable">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="colorModalLabel">Renkler Listelendi.</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <div class="mb-3">
+          <label for="naviColorFilterTextFormControl" class="form-label">Renk Arama</label>
+          <input type="text" [(ngModel)]="naviColorFilterText" class="form-control" id="naviColorFilterTextFormControl" placeholder="Arama İfadesini Giriniz">
+        </div>
+        <div *ngIf="naviBrandFilterText" class="alert alert-secondary">
+            Girilen Arama İfadesi: {{naviColorFilterText}}
+        </div>
+        <table class="table table-responsive table-striped table-dark table-hover">
+          <thead class="thead-light">
+              <tr>
+                  <th>No</th>
+                  <th>Renk Adı</th>
+                  <th>Sil</th>
+                  <th>Arabaları Listele</th>
+              </tr>
+          </thead>
+          <tbody>
+              <tr *ngFor="let color of colors |colorFilterPipe:naviColorFilterText">
+                  <td>{{color.id}}</td>
+                  <td>{{color.name}}</td>
+                  <td>
+                      <button type="button" class="btn btn-danger" (click)="deleteCurrentColor(color)">
+                          Sil
+                      </button>
+                  </td>
+                  <td>
+                      <button type="button" class="btn btn-info" data-bs-dismiss="modal" routerLink="/cars/color/{{color.id}}">
+                          Arabaları Listele
+                      </button>
+                  </td>
+              </tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Kapat</button>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="modal fade" id="colorAddModal" tabindex="-1" aria-labelledby="colorAddModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="colorAddModalLabel">Renk Ekle</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <div class="mb-3">
+          <label for="colorNameControlInput" class="form-label">Renk Adı</label>
+          <input type="text" [(ngModel)]="naviColorNameText" class="form-control" id="colorNameControlInput" placeholder="Renk Adını Giriniz.">
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Kapat</button>
+        <button type="button" class="btn btn-primary" data-bs-dismiss="modal" (click)="addColor()">Renk Ekle</button>
+      </div>
+    </div>
+  </div>
+</div>

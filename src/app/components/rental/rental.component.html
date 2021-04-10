@@ -2,10 +2,11 @@
     <div class="spinner-border" role="status">
       <span class="visually-hidden">Loading...</span>
     </div>
+    <br>
 </div>
-<h3><span class="badge bg-secondary">Kirlamalar</span></h3>
-<table class="table table-responsive table-striped table-dark table-hover">
-    <thead>
+<table class="table table-responsive table-striped table-hover overflow-auto">
+    <caption><h3><span class="badge bg-secondary">Kiralamalar</span></h3></caption>
+    <thead class="table-dark">
         <tr>
             <th>Araba Tanımı</th>
             <th>Müşteri Adı</th>
@@ -13,7 +14,7 @@
             <th>Geri Dönüş Tarihi</th>
         </tr>
     </thead>
-    <tbody>
+    <tbody class="table-secondary">
         <tr *ngFor="let rental of rentals">
             <td>{{rental.carName}}</td>
             <td>{{rental.customerName}}</td>
