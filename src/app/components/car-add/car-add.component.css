@@ -1,0 +1,15 @@
+
+.card{
+    background-color: rosybrown;
+    border-radius: 10px;
+}
+.mb-3{
+    padding: 1%;
+    background-color: #99ccff;
+    border-radius: 10px;
+}
+.card-header {
+    border-radius: 15px;
+    text-align: center;
+    background-color: #6699ff;
+}

@@ -56,7 +56,7 @@ export class CarDetailComponent implements OnInit {
   }
 
   loadSelectedCar() {
-    this.carService.getCarById(this.carId).subscribe(data=>{
+    this.carService.getCarDetailById(this.carId).subscribe(data=>{
       this.carDetail = data.data;
       this.carImages = this.carDetail.imageList;
       this.dataLoaded = data.success;

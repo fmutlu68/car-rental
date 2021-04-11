@@ -17,13 +17,12 @@ export class ColorService {
     return this.httpClient.get<ColorResponseModel>(this.apiUrl + "getall");
   }
   addColor(color:Color) : Observable<ResponseModel> {
-    return this.httpClient.post<ResponseModel>(this.apiUrl + "add",this.convertToJSON(color),{headers:this.headers});
+    return this.httpClient.post<ResponseModel>(this.apiUrl + "add",color);
   }
   deleteColor(color:Color) : Observable<ResponseModel> {
-    return this.httpClient.post<ResponseModel>(this.apiUrl + "delete",this.convertToJSON(color),{headers:this.headers});
+    return this.httpClient.post<ResponseModel>(this.apiUrl + "delete",color);
   }
-
-  convertToJSON(color:Color) {
-    return JSON.stringify(color);
+  updateColor(color:Color) : Observable<ResponseModel>{
+    return this.httpClient.post<ResponseModel>(this.apiUrl + "update",color);
   }
 }

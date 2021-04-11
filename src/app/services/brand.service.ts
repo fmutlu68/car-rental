@@ -11,7 +11,6 @@ import { ResponseModel } from '../models/responses/responseModel';
 
 export class BrandService {
   apiUrl : string = "http://localhost:61956/api/brands/";
-  headers = { 'content-type': 'application/json'}  
   
   constructor(private httpClient : HttpClient) { }
 
@@ -19,13 +18,12 @@ export class BrandService {
     return this.httpClient.get<BrandResponseModel>(this.apiUrl + "getall");
   }
   deleteBrand(brand:Brand): Observable<ResponseModel> {
-    return this.httpClient.post<ResponseModel>(this.apiUrl+"delete",this.convertToJSON(brand),{'headers':this.headers});
+    return this.httpClient.post<ResponseModel>(this.apiUrl+"delete",brand);
   }
   addBrand(brand:Brand) : Observable<ResponseModel> {
-    return this.httpClient.post<ResponseModel>(this.apiUrl + "add", this.convertToJSON(brand),{'headers':this.headers});
+    return this.httpClient.post<ResponseModel>(this.apiUrl + "add",brand);
   }
-
-  convertToJSON(brand:Brand) {
-    return JSON.stringify(brand);
+  updateBrand(brand:Brand): Observable<ResponseModel>{
+    return this.httpClient.post<ResponseModel>(this.apiUrl + "update",brand);
   }
 }

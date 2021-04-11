@@ -19,6 +19,7 @@
             <th>Marka Adı</th>
             <th>Renk Adı</th>
             <th>Detaya Git</th>
+            <th>Güncelle</th>
         </tr>
     </thead>
     <tbody>
@@ -31,6 +32,11 @@
             <td>
                 <button type="button" class="btn btn-secondary" routerLink="/cars/detail/{{car.carId}}">
                     Detaya Git
+                </button>
+            </td>
+            <td>
+                <button type="button" class="btn btn-success" routerLink="/cars/update/{{car.carId}}">
+                    Güncelle
                 </button>
             </td>
         </tr>

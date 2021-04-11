@@ -1,0 +1,74 @@
+<div class="content">
+  <div class="col-md-12">
+    <div class="card">
+      <div class="card-header">
+        <h5 class="title">Araba {{willUpdateCar?"Güncelle":"Ekle"}}</h5>
+      </div>
+      <div class="card-body">
+        <form [formGroup]="carAddForm">
+          <div class="mb-3">
+            <label for="carNameInputControl" class="form-label"
+              >Araba Tanımı</label
+            >
+            <div class="form-group">
+              <input
+                formControlName="description"
+                type="text"
+                class="form-control"
+                id="carNameInputControl"
+                placeholder="Tanımı"
+              />
+            </div>
+          </div>
+          <div class="mb-3">
+            <label for="dailyPriceInputControl" class="form-label"
+              >Günlük Kiralama Bedeli</label
+            >
+            <div class="input-group">
+              <input
+                formControlName="dailyPrice"
+                type="number"
+                class="form-control"
+                id="dailyPriceInputControl"
+                placeholder="Günlük Kiralama Bedeli"
+              />
+              <span class="input-group-text" id="basic-addon1">TL</span>
+            </div>
+          </div>
+          <div class="mb-3">
+            <label for="modelYearInputControl" class="form-label"
+              >Arabanın Üretim Yılı</label
+            >
+            <div class="form-group">
+              <input
+                formControlName="modelYear"
+                type="text"
+                class="form-control"
+                id="modelYearInputControl"
+                placeholder="Üretim Yılı"
+              />
+            </div>
+          </div>
+          <div class="mb-3">
+            <label for="brandAndColorInputControl" class="form-label"
+              >Arabanın Markası Ve Rengi</label
+            >
+            <div class="input-group">
+              <select formControlName="brandId" aria-label="Marka" id="brandAndColorInputControl" class="form-select">
+                  <option *ngFor="let brand of brands" [ngValue]="brand.id">{{brand.name}}</option>
+              </select>
+              <select formControlName="colorId" aria-label="Renk" class="form-select">
+                <option *ngFor="let color of colors" [ngValue]="color.id">{{color.name}}</option>
+            </select>
+            </div>
+          </div>
+        </form>
+      </div>
+      <div class="card-footer">
+          <div class="row">
+            <button class="btn btn-primary" (click)="addCar()">{{willUpdateCar?"Güncelle":"Ekle"}}</button>
+          </div>
+      </div>
+    </div>
+  </div>
+</div>
